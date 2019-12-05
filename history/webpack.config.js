@@ -8,7 +8,7 @@ module.exports = {
     contentBase: './build',
     compress: true
   },
-  mode: 'production', // 模式 默认两种 production deveplopment
+  mode: 'production', // 模式 默认两种 production development
   entry: './src/index.js', // 入口
   output: {
     filename: 'bundle.[hash:8].js', // 打包后的文件名

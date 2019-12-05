@@ -1,5 +1,11 @@
 @import './a.css';
 body{
-  background: red;
-  transform: rotate(45deg);
+  background: pink;
+  /* transform: rotate(45deg); */
+  
+}
+div{
+  width: 48px;
+  height: 48px;
+  background: url('./tel.png') no-repeat;
 }

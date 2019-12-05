@@ -4,7 +4,6 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let OptimizeCSS = require('optimize-css-assets-webpack-plugin');
 let UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-let webpack = require('webpack');
 module.exports = {
   optimization: { // 优化项
     minimizer: [
@@ -21,7 +20,6 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
-    // publicPath: 'https://www.baidu.com'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -29,31 +27,11 @@ module.exports = {
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/mian.css'
-    }),
+      filename: 'mian.css'
+    })
   ],
-  externals: {
-    jquery: "$"
-  },
   module: {
     rules: [
-      {
-        test: /\.html$/,
-        use: 'html-withimg-loader'
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        // 做一个限制 当我们的图片 小于多少k的时候 用base64 来转化
-        // 否则用file-loader产生真实的图片
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 1,
-            outputPath: '/img/',
-            publicPath: 'https://www.baidu.com'
-          }
-        }
-      },
       {
         test: /\.js$/,
         use: {
@@ -64,13 +42,10 @@ module.exports = {
             ],
             plugins: [
               ["@babel/plugin-proposal-decorators", { "legacy": true }],
-              ["@babel/plugin-proposal-class-properties", { "loose": true }],
-              '@babel/plugin-transform-runtime'
+              ["@babel/plugin-proposal-class-properties", { "loose": true }]
             ]
           }
-        },
-        include: path.resolve(__dirname, 'src'), // 包裹
-        exclude: /node_modules/ // 排除
+        }
       },
       {
         test: /\.css$/,
